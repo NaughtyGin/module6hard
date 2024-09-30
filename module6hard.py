@@ -12,7 +12,7 @@ class Figures:
             if isinstance(self, (Circle, Triangle)):
                 self.__sides = [*sides]
             elif isinstance(self, Cube):
-                if len(set([*sides])) == 1:
+                if len({[*sides]}) == 1:
                     self.__sides = [*sides]
                 else:
                     self.__sides = [1] * self.sides_count
