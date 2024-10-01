@@ -12,7 +12,7 @@ class Figures:
             if isinstance(self, (Circle, Triangle)):
                 self.__sides = [*sides]
             elif isinstance(self, Cube):
-                if len({[*sides]}) == 1:
+                if len(set([*sides])) == 1:
                     self.__sides = [*sides]
                 else:
                     self.__sides = [1] * self.sides_count
@@ -68,9 +68,9 @@ class Triangle(Figures):
     sides_count = 3
 
     def get_square(self):
-        a = self._Figures__sides[0]
-        b = self._Figures__sides[1]
-        c = self._Figures__sides[2]
+        a = self.get_sides()[0]
+        b = self.get_sides()[1]
+        c = self.get_sides()[2]
         p = (a + b + c) / 2
         return (p * (p - a) * (p - b) * (p - c)) ** 0.5
 
@@ -79,22 +79,22 @@ class Cube(Figures):
     sides_count = 12
 
     def get_volume(self):
-        return self._Figures__sides[0] ** 3
+        return self.get_sides()[0] ** 3
 
 
-circle1 = Circle((200, 200, 100), 10) # (Цвет, стороны)
+circle1 = Circle((200, 200, 100), 10)  # (Цвет, стороны)
 cube1 = Cube((222, 35, 130), 6)
 
 # Проверка на изменение цветов:
-circle1.set_color(55, 66, 77) # Изменится
+circle1.set_color(55, 66, 77)  # Изменится
 print(circle1.get_color())
-cube1.set_color(300, 70, 15) # Не изменится
+cube1.set_color(300, 70, 15)  # Не изменится
 print(cube1.get_color())
 
 # Проверка на изменение сторон:
-cube1.set_sides(5, 3, 12, 4, 5) # Не изменится
+cube1.set_sides(5, 3, 12, 4, 5)  # Не изменится
 print(cube1.get_sides())
-circle1.set_sides(15) # Изменится
+circle1.set_sides(15)  # Изменится
 print(circle1.get_sides())
 
 # Проверка периметра (круга), это и есть длина:
@@ -105,19 +105,21 @@ print(cube1.get_volume())
 
 # Проверка дополнительных вариантов создания объектов и методов (для треугольника и куба)
 # - не работает при попытке передать аргумент 'filled' (оставил "на потом")
-# triangle1 = Triangle((120, 120, 120), 4)
-# triangle2 = Triangle((120, 120, 120), 3, 4, 5)
-# print(triangle1.get_square())
-# print(triangle2.get_square())
-# print(len(triangle1))
-# print(len(triangle2))
-# cube2 = Cube((111, 111, 111), 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7)
-# cube3 = Cube((222, 222, 222), 8)
-# print(cube2.get_sides())
-# print(cube2.get_color())
-# print(cube2.get_volume())
-# print(cube3.get_sides())
-# print(cube3.get_color())
-# print(cube3.get_volume())
-# cube2.set_sides(8, 9, 10, 11, 7, 7, 7, 7, 7, 2, 3, 4)  # стороны куба разной длины - не изменится
-# print(cube2.get_sides())
+triangle1 = Triangle((120, 120, 120), 4)
+triangle2 = Triangle((120, 120, 120), 3, 4, 5)
+print(triangle1.get_square())
+print(triangle2.get_square())
+print(len(triangle1))
+print(len(triangle2))
+cube2 = Cube((111, 111, 111), 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7)
+cube3 = Cube((222, 222, 222), 8)
+print(cube2.get_sides())
+print(cube2.get_color())
+print(cube2.get_volume())
+print(cube3.get_sides())
+print(cube3.get_color())
+print(cube3.get_volume())
+cube2.set_sides(8, 9, 10, 11, 7, 7, 7, 7, 7, 2, 3, 4)  # стороны куба разной длины - не изменится
+print(cube2.get_sides())
+cube3.set_sides(8, 9, 10, 11, 7, 7, 7, 7, 7, 2, 3, 4)  # стороны куба разной длины - не изменится
+print(cube3.get_sides())
