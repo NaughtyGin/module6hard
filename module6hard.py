@@ -12,7 +12,7 @@ class Figures:
             if isinstance(self, (Circle, Triangle)):
                 self.__sides = [*sides]
             elif isinstance(self, Cube):
-                if len(set([*sides])) == 1:
+                if len({*sides}) == 1:
                     self.__sides = [*sides]
                 else:
                     self.__sides = [1] * self.sides_count
@@ -24,11 +24,12 @@ class Figures:
         return self.__color
 
     def __is_valid_color(self, r, g, b):
-        self.r = r
-        self.g = g
-        self.b = b
-        if 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255:
-            return True
+        if isinstance(self, (Circle, Triangle, Cube)):
+            self.r = r
+            self.g = g
+            self.b = b
+            if 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255:
+                return True
 
     def set_color(self, r, g, b):
         if self.__is_valid_color(r, g, b) is True:
